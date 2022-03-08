@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="style.css">
+
+  <!--this is for the font owesome , used to get the trashbin icon below-->  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+
+</head>
+<body>
+    <div class="container">
+        
+        <div id="newtask">
+            <input type="text" placeholder="Tasks to be done....">
+            <button id="push">ADD</button>
+        </div>
+        <div id="tasks"></div>
+
+    </div> 
+
+    <script type="text/javascript">
+        document.querySelector('#push').onclick = function(){//what happens whenyou click the add button
+            if(document.querySelector('#newtask input').value.length == 0){//if you have not entered anything the alert will popup
+                alert("please Enter A Task")
+            }
+            else{//if you enter anything this is what happens
+                document.querySelector('#tasks').innerHTML += `
+                <div class ="task">
+                <span id="taskname">
+                    ${document.querySelector('#newtask input').value}
+                </span>
+
+                <button class="delete">
+                    <i class="far fa-trash-alt"></i>
+                </button> 
+                </div>   
+                `;//all this is what happens when you enter a value in that box
+
+                var current_tasks = document.querySelectorAll(".delete");//delete button doings
+                for(var i = 0; i < current_tasks.length; i++){
+                    current_tasks[i].onclick = function(){
+                        this.parentNode.remove();
+                    }
+                }
+            }//should be online for this to work the button delete
+        }
+    </script>
+</body>
+</html> 
